@@ -13,6 +13,8 @@ ExternalProject_Add(cpp_httplib_src
     && ${CMAKE_COMMAND} -E copy
          <SOURCE_DIR>/httplib.h
          ${CMAKE_CURRENT_BINARY_DIR}/include/cpp-httplib/httplib.h
+  PATCH_COMMAND
+    bash -c "cd <SOURCE_DIR> && patch --batch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/patches/namespace_exposed.patch"
   UPDATE_DISCONNECTED TRUE
 )
 

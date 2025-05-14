@@ -1,0 +1,38 @@
+diff --git a/httplib.h b/httplib.h
+index 0aa4e62..1c9af02 100644
+--- a/httplib.h
++++ b/httplib.h
+@@ -177,11 +177,11 @@ using ssize_t = long;
+ #endif // _MSC_VER
+ 
+ #ifndef S_ISREG
+-#define S_ISREG(m) (((m) & S_IFREG) == S_IFREG)
++#define S_ISREG(m) (((m)&S_IFREG) == S_IFREG)
+ #endif // S_ISREG
+ 
+ #ifndef S_ISDIR
+-#define S_ISDIR(m) (((m) & S_IFDIR) == S_IFDIR)
++#define S_ISDIR(m) (((m)&S_IFDIR) == S_IFDIR)
+ #endif // S_ISDIR
+ 
+ #ifndef NOMINMAX
+@@ -326,7 +326,10 @@ using socket_t = int;
+ /*
+  * Declaration
+  */
+-namespace httplib {
++#ifndef HTTPLIB_NAMESPACE
++#define HTTPLIB_NAMESPACE httplib
++#endif
++namespace HTTPLIB_NAMESPACE {
+ 
+ namespace detail {
+ 
+@@ -10513,6 +10516,6 @@ inline SSL_CTX *Client::ssl_context() const {
+ 
+ // ----------------------------------------------------------------------------
+ 
+-} // namespace httplib
++} // namespace HTTPLIB_NAMESPACE
+ 
+ #endif // CPPHTTPLIB_HTTPLIB_H
